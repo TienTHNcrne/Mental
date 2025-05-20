@@ -10,10 +10,13 @@
 </head>
 
 <body>
-    <button id="openside" class="openbar" onclick="bar()">☰ Menu</button>
+    <button id="openside" class="openbar" onclick="bar()">
+        <i class="fas fa-bars"></i>
+
+    </button>
 
     <div id="mybar" class="sidebar">
-        <button class="closebar" onclick="bar()">✖ Close</button>
+
         <ul>
             <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
             <li>
@@ -40,16 +43,14 @@
     <script>
         function bar() {
             const x = document.getElementById("mybar");
-            if (x.style.width == "250px") {
+            const y = document.getElementById("openside");
+            if (x.style.width == "200px") {
                 x.style.width = "0";
-                let y = document.getElementById("openside");
                 y.style.marginLeft = "10px";
             }
             else {
-                let y = document.getElementById("openside");
-
-                x.style.width = "250px";
-                y.style.marginLeft = "260px";
+                x.style.width = "200px";
+                y.style.marginLeft = "220px";
 
             }
         }
