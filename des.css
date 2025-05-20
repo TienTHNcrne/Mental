@@ -19,12 +19,25 @@ li{
     height: 100vh;
     width: 250px;
     border: 2px solid #ccc;
+    transition: width 0.75s;
+    overflow-x: hidden; 
+    
 }
-.closebar .openbar{
-    border: 2px solid black;
-    margin-top: 20px;
-    margin-left: 150px;
+
+.openbar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 999;
 }
+
+#openside  {
+    transition: margin-left 0.75s ease;
+    font-size: larger;
+    color: white;
+    background-color: black;
+}
+
 li:hover{
     background-color: #ffd966;
     border-radius: 10px;
