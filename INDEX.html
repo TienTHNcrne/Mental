@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="des.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mental</title>
+</head>
+
+<body>
+    <!--OPEN SIDEBAR-->
+    </div>
+    <div id="main">
+        <button class="openbar" onclick="bar()">Open</button>
+        <!-- SIDEBAR-->
+
+    </div>
+    <div id="mybar" class="sidebar">
+        <!--CLOSE SIDEBAR-->
+
+        <button class="closebar" onclick="bar()"> CLOSE</button>
+        <ul>
+            <li>
+                <a href=" /">
+                    <i class="fas fa-home"> </i>
+                    Home
+
+                </a>
+            </li>
+            <li>
+                <a href="/" class="submental">
+                    <i class="fas fa-brain"></i>mental
+                </a>
+                <ul>
+                    <li><a href="/"><i class="fas fa-chart-bar"></i> Thống kê</a></li>
+                    <li><a href="/"><i class="fas fa-star-half-alt"></i> Đánh giá</a></li>
+                    <li><a href="/"><i class="fas fa-lightbulb"></i> Lời khuyên</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/">
+                    <i class="fas fa-share"></i>
+                    blog
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <i class="fas fa-book"></i>
+                    nhat ki
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <i class="fas fa-user"></i>account</a>
+                <ul>
+                    <li>
+                        <a href="">
+                            <i class="fas fa-user-plus"></i>
+                            sign up
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="fas fa-sign-in-alt"></i>
+                            sign in
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="fas fa-sign-out-alt"></i>
+                            sign out
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+        </ul>
+
+
+        <script>
+
+            function bar() {
+                const op = document.getElementById("mybar");
+                op.style.display = (op.style.display == "block") ? "none" : "block";
+            }
+            window.onload = function () {
+                document.getElementById("mybar").style.display = "none";
+            }
+
+
+
+
+
+        </script>
+</body>
+
+</html>
