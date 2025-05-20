@@ -2,99 +2,60 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="des.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mental</title>
+    <title>Mental</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="des.css">
 </head>
 
 <body>
-    <!--OPEN SIDEBAR-->
-    </div>
-    <div id="main">
-        <button class="openbar" onclick="bar()">Open</button>
-        <!-- SIDEBAR-->
+    <button id="openside" class="openbar" onclick="bar()">☰ Menu</button>
 
-    </div>
     <div id="mybar" class="sidebar">
-        <!--CLOSE SIDEBAR-->
-
-        <button class="closebar" onclick="bar()"> CLOSE</button>
+        <button class="closebar" onclick="bar()">✖ Close</button>
         <ul>
+            <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
             <li>
-                <a href=" /">
-                    <i class="fas fa-home"> </i>
-                    Home
-
-                </a>
-            </li>
-            <li>
-                <a href="/" class="submental">
-                    <i class="fas fa-brain"></i>mental
-                </a>
+                <a href="#" class="submental"><i class="fas fa-brain"></i> Mental</a>
                 <ul>
                     <li><a href="/"><i class="fas fa-chart-bar"></i> Thống kê</a></li>
                     <li><a href="/"><i class="fas fa-star-half-alt"></i> Đánh giá</a></li>
                     <li><a href="/"><i class="fas fa-lightbulb"></i> Lời khuyên</a></li>
                 </ul>
             </li>
+            <li><a href="/"><i class="fas fa-share"></i> Blog</a></li>
+            <li><a href="/"><i class="fas fa-book"></i> Nhật ký</a></li>
             <li>
-                <a href="/">
-                    <i class="fas fa-share"></i>
-                    blog
-                </a>
-            </li>
-            <li>
-                <a href="/">
-                    <i class="fas fa-book"></i>
-                    nhat ki
-                </a>
-            </li>
-            <li>
-                <a href="/">
-                    <i class="fas fa-user"></i>account</a>
+                <a href="#"><i class="fas fa-user"></i> Account</a>
                 <ul>
-                    <li>
-                        <a href="">
-                            <i class="fas fa-user-plus"></i>
-                            sign up
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <i class="fas fa-sign-in-alt"></i>
-                            sign in
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <i class="fas fa-sign-out-alt"></i>
-                            sign out
-                        </a>
-                    </li>
-
+                    <li><a href="#"><i class="fas fa-user-plus"></i> Sign up</a></li>
+                    <li><a href="#"><i class="fas fa-sign-in-alt"></i> Sign in</a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
                 </ul>
             </li>
         </ul>
+    </div>
 
-
-        <script>
-
-            function bar() {
-                const op = document.getElementById("mybar");
-                op.style.display = (op.style.display == "block") ? "none" : "block";
+    <script>
+        function bar() {
+            const x = document.getElementById("mybar");
+            if (x.style.width == "250px") {
+                x.style.width = "0";
+                let y = document.getElementById("openside");
+                y.style.marginLeft = "10px";
             }
-            window.onload = function () {
-                document.getElementById("mybar").style.display = "none";
+            else {
+                let y = document.getElementById("openside");
+
+                x.style.width = "250px";
+                y.style.marginLeft = "260px";
+
             }
+        }
 
 
-
-
-
-        </script>
+    </script>
 </body>
 
 </html>
