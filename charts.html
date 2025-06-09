@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Biểu đồ cảm xúc</title>
+</head>
+<body>
+  <canvas id="myChart" width="400" height="200"></canvas>
+
+  <script>
+    new Chart(document.getElementById('myChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Vui', 'Buồn', 'Bình thường'],
+        datasets: [{
+          label: 'Số ngày',
+          data: [3, 1, 2],
+          backgroundColor: ['#4caf50', '#f44336', '#ffeb3b']
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

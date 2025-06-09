@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="des.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="ani.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+      <button id='menu' class='toggle-btn' onclick='sidebars()'>
+      <i class='fas fa-bars'></i>
+    </button>
+
+      <aside class='sidebar' id='sidebar'>
+      <ul class='menu'>
+        <li><a href='/'><i class='fas fa-home'></i> Home</a></li>
+
+        <li class='has-submenu'>
+          <a href='#'><i class='fas fa-brain'></i> Feel</a>
+          <ul class='submenu'>
+           <li><a href="charts"><i class="fas fa-chart-line"></i>
+                Charts</a></li>
+            <li><a href='choose.html'><i class='fas fa-star-half-alt'></i>
+                Choose</a></li>
+            <li><a href='dairy.html'><i class='fas fa-journal-whills'></i>
+                Diary</a></li>
+          </ul>
+        </li>
+
+        <li><a href="share.html"><i class="fas fa-share"></i> Share</a></li>
+
+        <li class='has-submenu'>
+          <a href='#'><i class='fas fa-user'></i> Account</a>
+          <ul class='submenu'>
+            <li><a href='signin.html'><i class='fas fa-sign-in-alt'></i>
+                Sign in</a></li>
+            <li><a href='index.html'><i class='fas fa-sign-out-alt'></i>
+                Sign out</a></li>
+            <li><a href='index.html'><i class='fas fa-user-plus'></i>
+                Sign up</a></li>
+          </ul>
+        </li>
+      </ul>
+    </aside>
+
+     <form id='ngon'>
+      <h1>Chọn cảm xúc của bạn</h1>
+
+      <div class='ic'>
+        <button type='button' id='very-hapy'>
+          <i class='fas fa-face-grin-stars'></i>
+        </button>
+        <button type='button' id='hapy'>
+          <i class='fas fa-face-smile'></i>
+        </button>
+        <button type='button' id='normal'>
+          <i class='fas fa-face-meh'></i>
+        </button>
+        <button type='button' id='sad'>
+          <i class='fas fa-face-frown'></i>
+        </button>
+        <button type='button' id='very-sad'>
+          <i class='fas fa-face-sad-tear'></i>
+        </button>
+      </div>
+
+      <div class='sub'>
+        <button type='submit'>Submit</button>
+        <div id='con' style='display: none'></div>
+      </div>
+    </form>
+    
+
+    <script>
+          const icon = document.querySelectorAll(".ic button");
+          icon.forEach((button)=>{
+              button.addEventListener("click",()=>{
+                icon.forEach((button)=> button.classList.remove("active"));
+                  button.classList.add("active")       
+              })
+          })
+    </script>
+  </body>
+</body>
+</html>

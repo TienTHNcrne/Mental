@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Share - Mental Health Tracker</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+    }
+    .sidebar {
+      width: 220px;
+      background: #2c3e50;
+      color: white;
+      min-height: 100vh;
+      padding-top: 20px;
+    }
+    .sidebar ul.menu {
+      list-style: none;
+      padding-left: 0;
+    }
+    .sidebar ul.menu li {
+      padding: 12px 20px;
+    }
+    .sidebar ul.menu li a {
+      color: white;
+      text-decoration: none;
+      display: block;
+    }
+    .sidebar ul.menu li.has-submenu > a:after {
+      content: " ▼";
+      font-size: 0.7em;
+    }
+    .sidebar ul.menu li ul.submenu {
+      list-style: none;
+      padding-left: 20px;
+      display: none;
+      background: #34495e;
+    }
+    .sidebar ul.menu li.has-submenu:hover ul.submenu {
+      display: block;
+    }
+    .sidebar ul.menu li ul.submenu li {
+      padding: 8px 0;
+    }
+    .sidebar ul.menu li ul.submenu li a {
+      font-size: 0.9em;
+    }
+
+    main {
+      flex-grow: 1;
+      padding: 20px;
+      background: #ecf0f1;
+      min-height: 100vh;
+    }
+
+    /* Share section styles */
+    #share-section {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgb(0 0 0 / 0.1);
+    }
+    #share-section h2 {
+      margin-top: 0;
+    }
+    #share-text {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      resize: vertical;
+      font-size: 1em;
+      font-family: inherit;
+    }
+    #share-form button {
+      margin-top: 12px;
+      padding: 10px 20px;
+      border: none;
+      background-color: #3498db;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    #shares-list {
+      margin-top: 30px;
+    }
+    #shares-list h3 {
+      margin-bottom: 15px;
+    }
+    #shares-ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    #shares-ul li {
+      background: #f9f9f9;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      padding: 15px;
+      position: relative;
+      font-size: 1.1em;
+      line-height: 1.4em;
+    }
+    .reaction-btn {
+      cursor: pointer;
+      margin-right: 12px;
+      user-select: none;
+      font-size: 1.2em;
+      transition: transform 0.15s;
+    }
+    .reaction-btn:hover {
+      transform: scale(1.3);
+    }
+    .reaction-count {
+      margin-left: 6px;
+      font-weight: bold;
+      font-size: 1em;
+      vertical-align: middle;
+    }
+    .reaction-container {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <aside class="sidebar" id="sidebar">
+    <ul class="menu">
+      <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+      <li class="has-submenu">
+        <a href="#"><i class="fas fa-brain"></i> Feel</a>
+        <ul class="submenu">
+          <li><a href="charts"><i class="fas fa-chart-line"></i> Charts</a></li>
+          <li><a href="choose.html"><i class="fas fa-star-half-alt"></i> Choose</a></li>
+          <li><a href="dairy.html"><i class="fas fa-journal-whills"></i> Diary</a></li>
+        </ul>
+      </li>
+      <li><a href="share"><i class="fas fa-share"></i> Share</a></li>
+      <li class="has-submenu">
+        <a href="#"><i class="fas fa-user"></i> Account</a>
+        <ul class="submenu">
+          <li><a href="signin.html"><i class="fas fa-sign-in-alt"></i> Sign in</a></li>
+          <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
+          <li><a href="index.html"><i class="fas fa-user-plus"></i> Sign up</a></li>
+        </ul>
+      </li>
+    </ul>
+  </aside>
+
+  <main>
+    <section id="share-section">
+      <h2>Chia sẻ ẩn danh trạng thái của bạn</h2>
+      <form id="share-form">
+        <textarea id="share-text" rows="4" placeholder="Viết điều bạn muốn chia sẻ..."></textarea>
+        <button type="submit">Chia sẻ</button>
+      </form>
+      <div id="shares-list">
+        <h3>Bài chia sẻ</h3>
+        <ul id="shares-ul"></ul>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const shareForm = document.getElementById('share-form');
+    const shareText = document.getElementById('share-text');
+    const sharesUl = document.getElementById('shares-ul');
+
+    function loadShares() {
+      return JSON.parse(localStorage.getItem('shares') || '[]');
+    }
+
+    function saveShares(shares) {
+      localStorage.setItem('shares', JSON.stringify(shares));
+    }
+
+    function createShareItem(share) {
+      const li = document.createElement('li');
+      li.textContent = share.text;
+
+      const reactionsDiv = document.createElement('div');
+      reactionsDiv.className = 'reaction-container';
+
+      ['❤️', '🤗'].forEach(emoji => {
+        const btn = document.createElement('span');
+        btn.className = 'reaction-btn';
+        btn.textContent = emoji;
+        btn.title = 'Thích';
+
+        const countSpan = document.createElement('span');
+        countSpan.className = 'reaction-count';
+        countSpan.textContent = share.reactions[emoji] || 0;
+
+        btn.addEventListener('click', () => {
+          share.reactions[emoji] = (share.reactions[emoji] || 0) + 1;
+          countSpan.textContent = share.reactions[emoji];
+          saveShares(shares);
+        });
+
+        reactionsDiv.appendChild(btn);
+        reactionsDiv.appendChild(countSpan);
+      });
+
+      li.appendChild(reactionsDiv);
+      return li;
+    }
+
+    let shares = loadShares();
+    function renderShares() {
+      sharesUl.innerHTML = '';
+      shares.forEach(share => {
+        sharesUl.appendChild(createShareItem(share));
+      });
+    }
+
+    shareForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const text = shareText.value.trim();
+      if (!text) {
+        alert('Vui lòng viết nội dung chia sẻ');
+        return;
+      }
+      const newShare = { text, reactions: {} };
+      shares.unshift(newShare);
+      saveShares(shares);
+      renderShares();
+      shareText.value = '';
+    });
+
+    renderShares();
+  </script>
+</body>
+</html>
