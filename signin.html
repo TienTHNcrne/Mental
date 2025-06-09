@@ -49,33 +49,23 @@
         <h2>SIGN IN</h2>
         <label for='username'>
           <input
-            placeholder='username'
+            placeholder='ID'
             type='username'
             name='username'
             id='username'
             required
           />
         </label>
-        <label for='password'>
-          <input
-            placeholder='password'
-            type='password'
-            name='password'
-            id='password'
-            required
-          />
-        </label>
-        <button type='submit' id='subsign'>SIGN IN</button>
+       
+       <div class = "foot">
+          <button type='submit' id='subsign'>SIGN IN</button>
+          <button id ="create-new-id"> NEW ID</button>
+       </div>
         <p id='hee' style='display: none'></p>
       </form>
     </div>
     <script>
-      const username = document.getElementById("username"); const pass =
-      document.getElementById("password"); const buttoned =
-      document.getElementById("subsign"); buttoned.addEventListener("click", (e)
-      => { e.preventDefault(); let yahur = document.getElementById("hee"); if
-      (username.value == "" || pass.value == "") yahur.innerText = "nhap lai";
-      else yahur.innerText = "oke"; yahur.style.display = "block"; });
+
     </script>
   </body>
 </html>
